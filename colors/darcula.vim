@@ -247,124 +247,6 @@ call s:Hi('UIDialog', s:p.fg, s:p.statusLine)
 call s:Hi('UIBorder', s:p.UIBorder, s:p.statusLine)
 call s:Hi('UISelection', s:p.null, s:p.UISelection)
 
-" neovim
-if has('nvim')
-  " the following code snippet fix an issue with CursorLine hi group
-  " see https://github.com/neovim/neovim/issues/9019
-  if has('termguicolors') && &termguicolors
-    hi CursorLine ctermfg=white
-  else
-    hi CursorLine guifg=white
-  endif
-  hi! link NormalFloat Pmenu
-  hi! link NormalNC NormalFg
-  hi! link MsgArea NormalFg
-  hi! link MsgSeparator StatusLine
-  hi! link QuickFixLine NormalFg
-  hi! link Substitute Search
-  " TermCursor
-  " TermCursorNC
-  hi! link Whitespace NonText
-  hi! link healthSuccess IncSearch
-  call s:Hi('NvimInternalError', s:p.error, s:p.error)
-  call s:Hi('RedrawDebugClear', s:p.fg, s:p.duplicateFromServer)
-  call s:Hi('RedrawDebugComposed', s:p.fg, s:p.search)
-  call s:Hi('RedrawDebugRecompose', s:p.fg, s:p.codeError)
-  " Terminal colors
-  let g:terminal_color_0 = s:p.ANSIBlack[0]
-  let g:terminal_color_1 = s:p.ANSIRed[0]
-  let g:terminal_color_2 = s:p.ANSIGreen[0]
-  let g:terminal_color_3 = s:p.ANSIYellow[0]
-  let g:terminal_color_4 = s:p.ANSIBlue[0]
-  let g:terminal_color_5 = s:p.ANSIMagenta[0]
-  let g:terminal_color_6 = s:p.ANSICyan[0]
-  let g:terminal_color_7 = s:p.ANSIGray[0]
-  let g:terminal_color_8 = s:p.ANSIDarkGray[0]
-  let g:terminal_color_9 = s:p.ANSIBrightRed[0]
-  let g:terminal_color_10 = s:p.ANSIBrightGreen[0]
-  let g:terminal_color_11 = s:p.ANSIBrightYellow[0]
-  let g:terminal_color_12 = s:p.ANSIBrightBlue[0]
-  let g:terminal_color_13 = s:p.ANSIBrightMagenta[0]
-  let g:terminal_color_14 = s:p.ANSIBrightCyan[0]
-  let g:terminal_color_15 = s:p.ANSIWhite[0]
-
-  " nvim-treesitter
-  hi! link TSAnnotation PreProc
-  hi! link TSAttribute PreProc
-  hi! link TSBoolean Keyword
-  hi! link TSCharacter Character
-  hi! link TSComment Comment
-  hi! link TSConstructor Function
-  hi! link TSConditional Keyword
-  hi! link TSConstant Constant
-  hi! link TSConstBuiltin Keyword
-  hi! link TSConstMacro cMacroName
-  hi! link TSError codeError
-  hi! link TSException Keyword
-  hi! link TSField InstanceField
-  hi! link TSFloat Number
-  hi! link TSFunction Function
-  hi! link TSFuncBuiltin Normal
-  hi! link TSFuncMacro cMacroName
-  hi! link TSInclude Keyword
-  hi! link TSKeyword Keyword
-  hi! link TSKeywordFunction Keyword
-  hi! link TSLabel Normal
-  hi! link TSMethod Function
-  hi! link TSNamespace cDataStructure
-  hi! link TSNone Normal
-  hi! link TSNumber Number
-  hi! link TSOperator Normal
-  hi! link TSParameter Normal
-  hi! link TSParameterReference Normal
-  hi! link TSProperty TSField
-  hi! link TSPunctDelimiter Normal
-  hi! link TSPunctBracket Normal
-  hi! link TSPunctSpecial Keyword
-  hi! link TSRepeat Keyword
-  hi! link TSString String
-  hi! link TSStringRegex Number
-  hi! link TSStringEscape Keyword
-  hi! link TSTag htmlTag
-  hi! link TSTagDelimiter htmlTag
-  hi! link TSText Normal
-  call s:Hi('TSStrong', s:p.fg, s:p.null, 'bold')
-  call s:Hi('TSEmphasis', s:p.fg, s:p.null, 'italic')
-  call s:Hi('TSUnderline', s:p.fg, s:p.null, 'underline')
-  call s:Hi('TSStrike', s:p.fg, s:p.null, 'strikethrough')
-  call s:Hi('TSTitle', s:p.fg, s:p.null, 'bold,underline')
-  hi! link TSLiteral Normal
-  hi! link TSURI markdownLinkText
-  hi! link TSNote CodeInfo
-  hi! link TSWarning CodeWarning
-  hi! link TSDanger CodeError
-  hi! link TSType Normal
-  hi! link TSTypeBuiltin Keyword
-  hi! link TSVariable Normal
-  hi! link TSVariableBuiltin Keyword
-
-  " LSP
-  hi! link LspDiagnosticsDefaultError CodeError
-  hi! link LspDiagnosticsDefaultWarning CodeWarning
-  hi! link LspDiagnosticsDefaultInformation CodeInfo
-  hi! link LspDiagnosticsDefaultHint CodeHint
-  hi! link LspDiagnosticsSignError ErrorSign
-  hi! link LspDiagnosticsSignWarning WarningSign
-  hi! link LspDiagnosticsSignInformation InfoSign
-  hi! link LspDiagnosticsSignHint HintSign
-  hi! link LspReferenceText IdentifierUnderCaret
-  hi! link LspReferenceRead IdentifierUnderCaret
-  hi! link LspReferenceWrite IdentifierUnderCaretWrite
-  hi! link LspDiagnosticsUnderlineError CodeError
-  hi! link LspDiagnosticsUnderlineWarning CodeWarning
-  hi! link LspDiagnosticsUnderlineInformation CodeInfo
-  hi! link LspDiagnosticsUnderlineHint CodeHint
-  hi! link LspDiagnosticsFloatingError NormalFloat
-  hi! link LspDiagnosticsFloatingWarning NormalFloat
-  hi! link LspDiagnosticsFloatingInformation NormalFloat
-  hi! link LspDiagnosticsFloatingHint NormalFloat
-endif
-
 " Vim terminal colors (for :terminal)
 if !has('nvim')
   let g:terminal_ansi_colors=[
@@ -410,37 +292,15 @@ hi! link cSpecial Keyword
 hi! link cEnum Keyword
 call s:Hi('cSomeMacro', s:p.macroName)
 
-" Rust
-call s:Hi('rustDeriveTrait', s:p.metaData)
-hi! link rustQuestionMark Keyword
-hi! link rustComma Keyword
-hi! link rustSemicolon Keyword
-hi! link rustOperator NormalFg
-call s:Hi('rustCommentLineDoc', s:p.docComment, s:p.null, 'italic')
-call s:Hi('rustMacro', s:p.rustMacro)
-hi! link rustAssert rustMacro
-hi! link rustPanic rustMacro
-hi! link rustEscape Keyword
-hi! link rustSigil NormalFg
-hi! link rustSelf Keyword
-call s:Hi('rustLifetime', s:p.rustLifetime, s:p.null, 'italic')
-call s:Hi('rustTypeParameter', s:p.rustLifetime)
-hi! link rustEnumVariant Constant
-hi! link rustModPath NormalFg
-hi! link rustModPathSep NormalFg
-hi! link rustAs Keyword
-hi! link rustConst Constant
-hi! link rustVarField InstanceField
-
 " Vim
-hi! link vimOption Constant
-hi! link vimFunction Function
-hi! link vimContinue NonText
-hi! link vimParenSep NormalFg
-hi! link vimBracket PreProc
-hi! link vimOper NormalFg
-hi! link vimSep NormalFg
-hi! link vimCommentString Comment
+"hi! link vimOption Constant
+"hi! link vimFunction Function
+"hi! link vimContinue NonText
+"hi! link vimParenSep NormalFg
+"hi! link vimBracket PreProc
+"hi! link vimOper NormalFg
+"hi! link vimSep NormalFg
+"hi! link vimCommentString Comment
 
 " JavaScript
 hi! link jsNoise Keyword
